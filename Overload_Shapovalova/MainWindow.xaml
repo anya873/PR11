@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Overload_Shapovalova"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Overload" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="113*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="171*"/>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="265*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="fio" Margin="26,25,21,12" TextWrapping="Wrap" Text="" Grid.Column="1"/>
+        <Label Content="ФИО" Margin="10,25,7,10" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Добавить" Margin="15,23,14,12" Grid.Column="2"/>
+        <ListBox Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,14,10" Grid.RowSpan="5"/>
+        <Label Content="Разделитель" Margin="12,23,13,12" RenderTransformOrigin="0.5,0.5" Grid.Column="3"/>
+        <TextBox x:Name="razd" Margin="4,24,141,13" TextWrapping="Wrap" Text="" Grid.Column="4"/>
+        <ComboBox Grid.Column="3" Margin="6,10,7,15" Grid.Row="1"/>
+        <CheckBox Grid.Column="4" Content="Сортировать по ФИО" Margin="10,11,109,16" Grid.Row="1"/>
+        <CheckBox Grid.Column="4" Content="Обратный порядок" Margin="10,10,109,10" Grid.Row="2"/>
+        <Button Content="Вывести список" Margin="10,10,113,13" Grid.Column="4" Grid.Row="3"/>
+        <TextBlock Grid.Column="4" Margin="10,17,10,17" Grid.Row="4" TextWrapping="Wrap" Text="TextBlock"/>
+        <Button Content="Очистить список" Margin="10,10,113,77" Grid.Column="4" Grid.Row="5"/>
+
     </Grid>
 </Window>
