@@ -34,6 +34,6 @@
         <Button Content="Вывести список" Margin="10,10,113,13" Grid.Column="4" Grid.Row="3"/>
         <TextBlock Grid.Column="4" Margin="10,17,10,17" Grid.Row="4" TextWrapping="Wrap" Text="TextBlock"/>
         <Button Content="Очистить список" Margin="10,10,113,77" Grid.Column="4" Grid.Row="5"/>
-
+        
     </Grid>
 </Window>
