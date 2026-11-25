@@ -6,29 +6,30 @@ namespace Overload_Shapovalova.Classes
 {
     public class StudentsRepo
     {
-        private List<string> students;
-
-        public int Count => students.Count;
+        private List<string> students = new List<string>();
 
         public StudentsRepo()
         {
-            students = new List<string>
-            {
-                "Иванов Иван",
-                "Петров Петр",
-                "Сидорова Анна",
-                "Кузнецов Алексей",
-                "Смирнова Ольга"
-            };
+            students.Add("Иванов Иван");
+            students.Add("Петров Петр");
+            students.Add("Сидорова Анна");
+            students.Add("Кузнецов Алексей");
+            students.Add("Смирнова Ольга");
+        }
+
+        public int Count
+        {
+            get { return students.Count; }
         }
 
         public void AddName(string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return;
+
             name = name.Trim();
-            if (students.Any(s => s.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            if (students.Contains(name))
             {
-                throw new Exception("Студент с таким ФИО уже есть в списке.");
+                throw new Exception("Такой студент уже есть!");
             }
             students.Add(name);
         }
@@ -45,7 +46,7 @@ namespace Overload_Shapovalova.Classes
 
         public List<string> GetNames()
         {
-            return new List<string>(students);
+            return students;
         }
 
         public string PrintNames()
@@ -62,7 +63,8 @@ namespace Overload_Shapovalova.Classes
         {
             if (string.IsNullOrEmpty(separator)) separator = ",";
             if (students.Count == 0) return "Список студентов пуст";
-            return string.Join(separator, students.Select(s => s.Trim()));
+
+            return string.Join(separator, students);
         }
 
         public string PrintNames(string separator, bool sort)
@@ -75,7 +77,7 @@ namespace Overload_Shapovalova.Classes
             if (string.IsNullOrEmpty(separator)) separator = ",";
             if (students.Count == 0) return "Список студентов пуст";
 
-            var list = students.Select(s => s.Trim()).ToList();
+            List<string> list = new List<string>(students);
             if (sort) list.Sort();
             if (reverse) list.Reverse();
 
@@ -87,7 +89,32 @@ namespace Overload_Shapovalova.Classes
             if (string.IsNullOrEmpty(separator)) separator = ",";
             if (students.Count == 0) return "Список студентов пуст";
 
-            return string.Join(separator, students.Take(maxCount).Select(s => s.Trim()));
+            return string.Join(separator, students.Take(maxCount));
+        }
+        public void LoadFromFile(string path)
+        {
+            if (!System.IO.File.Exists(path)) return;
+            students.Clear();
+            string[] lines = System.IO.File.ReadAllLines(path);
+            foreach (string line in lines)
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                    students.Add(line.Trim());
+            }
+        }
+
+        public string PrintNames(string separator, string path)
+        {
+            if (string.IsNullOrEmpty(separator)) separator = ",";
+            string result = string.Join(separator, students);
+            System.IO.File.WriteAllText(path, result);
+            return result;
+        }
+
+        public List<string> SearchByName(string fragment)
+        {
+            if (string.IsNullOrWhiteSpace(fragment)) return new List<string>();
+            return students.FindAll(s => s.IndexOf(fragment, StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

@@ -22,18 +22,37 @@
             <ColumnDefinition Width="107*"/>
             <ColumnDefinition Width="265*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Name="fio" Margin="26,25,21,12" TextWrapping="Wrap" Text="" Grid.Column="1"/>
+
+        <TextBox x:Name="fio" Margin="26,25,21,12" TextWrapping="Wrap" Text="" Grid.Column="1"/>
         <Label Content="ФИО" Margin="10,25,7,10" RenderTransformOrigin="0.5,0.5"/>
-        <Button Content="Добавить" Margin="15,23,14,12" Grid.Column="2"/>
-        <ListBox Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,14,10" Grid.RowSpan="5"/>
+        <Button Content="Добавить" Margin="15,23,14,12" Grid.Column="2" Click="btnAdd_Click"/>
+
+        <ListBox x:Name="lstStudents" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,14,10" Grid.RowSpan="5"/>
+
         <Label Content="Разделитель" Margin="12,23,13,12" RenderTransformOrigin="0.5,0.5" Grid.Column="3"/>
         <TextBox x:Name="razd" Margin="4,24,141,13" TextWrapping="Wrap" Text="" Grid.Column="4"/>
-        <ComboBox Grid.Column="3" Margin="6,10,7,15" Grid.Row="1"/>
-        <CheckBox Grid.Column="4" Content="Сортировать по ФИО" Margin="10,11,109,16" Grid.Row="1"/>
-        <CheckBox Grid.Column="4" Content="Обратный порядок" Margin="10,10,109,10" Grid.Row="2"/>
-        <Button Content="Вывести список" Margin="10,10,113,13" Grid.Column="4" Grid.Row="3"/>
-        <TextBlock Grid.Column="4" Margin="10,17,10,17" Grid.Row="4" TextWrapping="Wrap" Text="TextBlock"/>
-        <Button Content="Очистить список" Margin="10,10,113,77" Grid.Column="4" Grid.Row="5"/>
-        
+        <ComboBox x:Name="cmbSeparator" Grid.Column="3" Margin="6,10,7,15" Grid.Row="1" SelectionChanged="cmbSeparator_SelectionChanged">
+            <ComboBoxItem Content=","/>
+            <ComboBoxItem Content=";"/>
+            <ComboBoxItem Content=" | "/>
+            <ComboBoxItem Content=" — "/>
+            <ComboBoxItem Content=" "/>
+            <ComboBoxItem Content="&#x0a;"/>
+        </ComboBox>
+
+        <CheckBox x:Name="chkSort" Grid.Column="4" Content="Сортировать по ФИО" Margin="10,11,109,16" Grid.Row="1"/>
+        <CheckBox x:Name="chkReverse" Grid.Column="4" Content="Обратный порядок" Margin="10,10,109,10" Grid.Row="2"/>
+
+        <Button Content="Вывести список" Margin="10,10,113,13" Grid.Column="4" Grid.Row="3" Click="btnPrint_Click"/>
+        <TextBlock x:Name="txtResult" Grid.Column="4" Margin="10,17,10,17" Grid.Row="4" TextWrapping="Wrap" Text=""/>
+
+        <Button Content="Очистить список" Margin="10,10,113,77" Grid.Column="4" Grid.Row="5" Click="btnClear_Click"/>
+        <Button Content="Удалить выбранного" Margin="10,50,113,27" Grid.Column="4" Grid.Row="5" Click="btnRemove_Click"/>
+
+        <TextBox x:Name="txtSearch" Margin="10,78,10,0" Grid.Row="5" Grid.Column="3" Text="" VerticalAlignment="Top"/>
+        <Button Content="Найти" Margin="6,5,7,72" Grid.Column="3" Grid.Row="5" Click="btnSearch_Click"/>
+
+        <Button Content="Сохранить &#xD;&#xA;в файл" Margin="8,72,9,17" Grid.Column="3" Grid.Row="4" Click="btnSave_Click"/>
+        <Button Content="Загрузить &#xD;&#xA;из файла" Margin="6,10,10,79" Grid.Column="3" Grid.Row="4" Click="btnLoad_Click"/>
     </Grid>
 </Window>
